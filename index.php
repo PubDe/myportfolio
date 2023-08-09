@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <link rel="stylesheet" href="slider.css">
@@ -11,7 +13,9 @@
 </head>
 
 <body>
-    <div class="init">
+    <div class="init">  <!-- backgroud style #1 -->
+    <!-- <navigation panel> -->
+
         <nav>
             <div class="sp"></div>
             <label for="click" class="menu-btn">
@@ -27,6 +31,10 @@
                 <a href="/source/samplePDF.pdf" class="btn" download>Download CV</a>
             </div>
         </nav>
+    <!-- </navigation panel> -->
+
+    <!-- <Home> -->
+    
         <section id="home" class="container">
             <div class="row">
                 <div class="home-col">
@@ -48,32 +56,55 @@
                 </div>
             </div>
         </section>
+    <!-- </Home> -->
+    
     </div>
 
-    <div class="midit">
+    <div class="midit"> <!-- backgroud style #2 -->
+
+    <!-- <Works> -->
         <section id="works" class="container ">            
             <div class="row">
                 <div class="works-col-r reveal">
                     <h2>Projects</h2>
                     <ul style="padding-top: 10px;">
-                        <li ><a href="#"><h3># Online-Shopping App</h3></a>
-                            <ul><li>Lorem ipsum dolor sit amet consectetur</li></ul>
-                        </li>
-                        <li ><a href="#"><h3># Simple Social Meadia App</h3></a>
-                            <ul><li>Lorem ipsum dolor sit amet consectetur</li></ul>
-                        </li>
-                        <li ><a href="#"><h3># Educational Gaming App</h3></a>
-                            <ul><li>Lorem ipsum dolor sit amet consectetur</li></ul>
-                        </li>
-                        <li ><a href="#"><h3># Web App for Hotel Booking</h3></a>
-                            <ul><li>Lorem ipsum dolor sit amet consectetur</li></ul>
-                        </li>
-                        <li ><a href="#"><h3># Online-Shopping App</h3></a>
-                            <ul><li>Lorem ipsum dolor sit amet consectetur</li></ul>
-                        </li>
-                        <li ><a href="#"><h3># Simple Social Meadia App</h3></a>
-                            <ul><li>Lorem ipsum dolor sit amet consectetur</li></ul>
-                        </li>
+                        <?php 
+                
+                function loadProject(){
+
+                $conn = new mysqli("localhost:3306", "root", "admin", "abcdb");
+            
+                if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
+                }
+                
+                $sql = "SELECT projectid, topic, descript, link FROM projecttb";
+                $result = mysqli_query($conn, $sql);
+                
+                if (mysqli_num_rows($result) > 0) {
+                  // output data of each row
+                  while($row = mysqli_fetch_assoc($result)) {
+                    
+                    echo 
+                    "
+                    <li ><a href='".$row["link"]."'><h3>".$row["topic"]."</h3></a>
+                    <ul><li>".$row["descript"]."</li></ul>
+                    </li>
+                
+                        ";
+                  }
+                } else {
+                  echo "0 results";
+                }
+                
+                mysqli_close($conn);
+             }
+
+             loadProject();
+            ?>
+
+
+
                     </ul>
                 </div>
                 <div class="works-col-l ">
@@ -107,9 +138,14 @@
             </div>
             </div>  
         </section>
+    <!-- </Works> -->
+
     </div>
 
-    <div class="init">
+    <div class="init"> <!-- backgroud style #1 -->
+
+    <!-- <Achives & certificate> -->
+
         <section id="achives" class="container">
             <h2>ACHIVEMENTS</h2>
             <p>All foot-Prints along the way on my journey</p>
@@ -142,91 +178,57 @@
             <button class="pre-btn"><img src="image/arrow.png" alt=""></button>
             <button class="nxt-btn"><img src="image/arrow.png" alt=""></button>
             <div class="certificate-container">
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (1).jpg" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (1).jfif" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (2).jfif" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (1).webp" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (2).webp" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (3).webp" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (4).webp" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (5).webp" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (6).webp" class="certificate-thumb" alt="">
-                    </div>
-                </div>
-                <div class="certificate-card">
-                    <div class="certificate-image">
-                        <img src="image/ceti (4).jpg" class="certificate-thumb" alt="">
-                    </div>
-                </div>
+                <?php 
+                
+                    function loadCerti(){
+
+                    $conn = new mysqli("localhost:3306", "root", "admin", "abcdb");
+                
+                    if ($conn->connect_error) {
+                      die("Connection failed: " . $conn->connect_error);
+                    }
+                    
+                    $sql = "SELECT idimage, imageURL FROM imagey";
+                    $result = mysqli_query($conn, $sql);
+                    
+                    if (mysqli_num_rows($result) > 0) {
+                      // output data of each row
+                      while($row = mysqli_fetch_assoc($result)) {
+                        echo 
+                        "<div class='certificate-card'>
+                                    <div class='certificate-image'>
+                                        <img src='".$row["imageURL"]."' class='certificate-thumb' alt=''>
+                                    </div>
+                                </div>";
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                    
+                    mysqli_close($conn);
+                 }
+
+                            loadCerti();
+                ?>
             </div>
         </section>
+    
+    <!-- </Achives & certificate> -->
+    
     </div>
 
-    <div class="midit">
+    <div class="midit"> <!-- backgroud style #2 -->
+
+    <!-- <Contact Information> -->
+
         <section id="contact" class="container">
             <div class="row">
                 <div class="con-col">
-                    <form id="form" action="/">
-                        <h1>Contact me</h1>
-                        <div class="input-control">
-                            <label for="username">Username</label>
-                            <input id="username" name="username" type="text">
-                            <div class="error"></div>
-                        </div>
-                        <div class="input-control">
-                            <label for="email">Email</label>
-                            <input id="email" name="email" type="text">
-                            <div class="error"></div>
-                        </div>
-                        <div class="input-control">
-                            <label for="number">Phone Number</label>
-                            <input id="number"name="number" type="number">
-                            <div class="error"></div>
-                        </div>
-                        <div class="input-control">
-                            <label for="msg">Massage</label>
-                            <textarea id="msg" name="msg" rows="3"></textarea>
-                            <div class="error"></div>
-                        </div>
-                        <button type="submit">Send</button>
-                    </form>  
+                    <div id="form"></div>
+                    <?php include 'form.php' ?>  
                 </div>
                 <div class="con-col">
-                    <form id="banner" action="/">
+                    <div id="banner">
                         <h1>Contact information</h1>
                         <h2>e-mail</h2>
                         <h3>myOwnEmail@email.com</h3>
@@ -235,12 +237,16 @@
                         <h2>Address</h2>
                         <h3>123, Web Street, My Home town,OwnHill</h3>
                         <div class="bottm-line"></div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
+    
+    <!-- </Contact Information> -->
+    
     </div>
     
+    <!-- <Footer> -->
 
     <footer>
         <div class="container">
@@ -248,31 +254,34 @@
                 <div class="footer-col">
                     <h4>Category</h4>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Works</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#home">About</a></li>
+                        <li><a href="#works">Works</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Archives</h4>
                     <ul>
-                        <li><a href="#">March 2021</a></li>
-                        <li><a href="#">Augest 2022</a></li>
-                        <li><a href="#">November 2022</a></li>
+                        <li><a href="#achives">March 2021</a></li>
+                        <li><a href="#achives">Augest 2022</a></li>
+                        <li><a href="#achives">November 2022</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Links</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/PubDe" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- </Footer> -->
+
 </body>
 
 </html>

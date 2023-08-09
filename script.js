@@ -1,76 +1,6 @@
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const numbr = document.getElementById('number');
-const mssage = document.getElementById('msg');
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    validateInputs();
-});
-
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success')
-}
-
-const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-};
-
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
-const validateInputs = () => {
-    const usernameValue = username.value.trim();
-    const emailValue = email.value.trim();
-    const numValue = numbr.value.trim();
-    const mssgeValue = mssage.value.trim();
-
-    if(usernameValue === '') {
-        setError(username, 'Username is required');
-    } else {
-        setSuccess(username);
-    }
-
-    if(emailValue === '') {
-        setError(email, 'Email is required');
-    } else if (!isValidEmail(emailValue)) {
-        setError(email, 'Provide a valid email address');
-    } else {
-        setSuccess(email);
-    }
-
-    if(numValue === '') {
-        setError(numbr, 'Phone number is required');
-    } else if (numValue.length < 10 ) {
-        setError(numbr, 'Phone number must be at least 10 numbers.')
-    } else {
-        setSuccess(numbr);
-    }
-
-    if(mssgeValue === '') {
-        setError(mssage, 'Please drop a masssage');
-    } else {
-        setSuccess(mssage);
-    }
-
-};
 
 
-//---------------------------------------------------
+//---------------------Casaroll-------------------------
 
 const productContainers = [...document.querySelectorAll('.certificate-container')];
 const nxtBtn = [...document.querySelectorAll('.nxt-btn')];
@@ -80,16 +10,16 @@ productContainers.forEach((item, i) => {
     let containerDimensions = item.getBoundingClientRect();
     let containerWidth = containerDimensions.width;
 
-    nxtBtn[i].addEventListener('click', () => {
+    preBtn[i].addEventListener('click', () => {
         item.scrollLeft -= containerWidth;
     })
 
-    preBtn[i].addEventListener('click', () => {
+    nxtBtn[i].addEventListener('click', () => {
         item.scrollLeft += containerWidth;
     })
 })
 
-//----------------------------------------
+//---------------------Reveal anime-------------------
 
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
@@ -110,7 +40,7 @@ function reveal() {
   window.addEventListener("scroll", reveal);
 
 
-  //-------------------------------------
+  //-----------------Fadeout anime--------------------
 
   function fadeOut() {
     var fadings = document.querySelectorAll(".fade-out");
@@ -130,7 +60,7 @@ function reveal() {
   
   window.addEventListener("scroll", fadeOut);
 
-  //-------------------------------------------
+  //------------------Fadein anime-------------------------
 
   function fadeIn() {
     var fadingsins = document.querySelectorAll(".fade-in");
@@ -150,7 +80,7 @@ function reveal() {
   
   window.addEventListener("scroll", fadeIn);
 
-  //------------------------------------------------
+  //---------------------Show more btn---------------------------
 
   function showMoreFun() {
     var dots = document.getElementById("dots");

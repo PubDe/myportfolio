@@ -434,7 +434,7 @@ nav ul li:hover::before{
 }
 
 .input-control.success input {
-    border-color: #09c372;
+    border-color: #4683ff;
 }
 
 .input-control.error input {
@@ -442,7 +442,7 @@ nav ul li:hover::before{
 }
 
 .input-control.success textarea {
-    border-color: #09c372;
+    border-color: #4683ff;
 }
 
 .input-control.error textarea {
@@ -453,6 +453,15 @@ nav ul li:hover::before{
     color: #ff3860;
     font-size: 9px;
     height: 13px;
+}
+
+#form-btn {
+    width: 100%;
+    margin: 20vh auto 0 auto;
+    padding: 20px;
+    background: linear-gradient(45deg,#07014a 70%,#0f0489 ,#4d98f3);
+    border-radius: 4px;
+    font-size: 12px;
 }
 
 #banner {
@@ -615,6 +624,13 @@ footer ul{
         font-size: 12px;
     }
     #banner {
+        width: 100%;
+        margin: auto;
+        padding: 20px;
+        font-size: 12px;
+    }
+
+    #form-btn {
         width: 100%;
         margin: auto;
         padding: 20px;
@@ -837,9 +853,7 @@ footer ul{
         font-size: 10px;
     }
 
-    #banner {
 
-    }
 
     #banner h1 {
         margin-top: 10%;
